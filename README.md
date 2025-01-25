@@ -1,67 +1,34 @@
-# Hangman
-import random
-from hangman_words import word_list
-from hangman_art import stages
-from hangman_art import logo
+# Hangman Game in Python
 
-print(logo)
-# TODO-1: - Update the word list to use the 'word_list' from hangman_words.py
+## Description
 
-lives = 6
+This is a simple Python-based Hangman game where players try to guess a word by inputting letters. The game displays the word with placeholders (underscores) and gives the player a limited number of lives. Each incorrect guess reduces a life, and the game ends when the player either guesses the word or runs out of lives.
 
-# TODO-3: - Import the logo from hangman_art.py and print it at the start of the game.
+## Features
+- Randomly selects a word from a word list.
+- Displays a graphical representation of the hangman stages.
+- Tracks the number of remaining lives.
+- Prevents the player from guessing the same letter multiple times.
+- Informs the player when a guessed letter is correct or incorrect.
 
-chosen_word = random.choice(word_list)
-print(chosen_word)
+## Technologies Used
+- Python 3.x
+- Random module for choosing words from a list
+- Custom graphics stored in `hangman_art.py`
 
-placeholder = ""
-word_length = len(chosen_word)
-for position in range(word_length):
-    placeholder += "_"
-print("Word to guess: " + placeholder)
+## How to Play
+1. The game will randomly choose a word from a predefined list.
+2. You need to guess a letter at a time.
+3. If your guess is correct, the corresponding placeholder will be replaced with the guessed letter.
+4. If your guess is incorrect, you will lose a life and a part of the hangman will be drawn.
+5. The game ends when either all letters are guessed correctly (you win) or you run out of lives (you lose).
 
-game_over = False
-correct_letters = []
+## Files
+- `hangman_game.py`: Main game logic, where the game is played.
+- `hangman_words.py`: Contains a list of words used in the game.
+- `hangman_art.py`: Contains the hangman stages and logo.
 
-while not game_over:
-
-    # TODO-6: - Update the code below to tell the user how many lives they have left.
-    print("****************************<???>",lives,"LIVES LEFT****************************")
-    guess = input("Guess a letter: ").lower()
-
-    # TODO-4: - If the user has entered a letter they've already guessed, print the letter and let them know.
-
-    display = ""
-
-    for letter in chosen_word:
-        if letter in correct_letters:
-            display += letter
-            print(guess," has already been guessed!Try with other letters.")
-        elif letter == guess:
-            display += letter
-            correct_letters.append(guess)
-        else:
-            display += "_"
-
-    print("Word to guess: " + display)
-
-    # TODO-5: - If the letter is not in the chosen_word, print out the letter and let them know it's not in the word.
-    #  e.g. You guessed d, that's not in the word. You lose a life.
-
-    if guess not in chosen_word:
-        lives -= 1
-        print("You guessed", guess, "that's not in the word. You lose a life")
-
-        if lives == 0:
-            game_over = True
-
-            # TODO 7: - Update the print statement below to give the user the correct word they were trying to guess.
-            print(f"***********************YOU LOSE**********************")
-            print("The correct word is",chosen_word)
-
-    if "_" not in display:
-        game_over = True
-        print("****************************YOU WIN****************************")
-
-    # TODO-2: - Update the code below to use the stages List from the file hangman_art.py
-    print(stages[lives])
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/hangman-game.git
